@@ -1,9 +1,7 @@
-import datetime
-
 class DB():
     def __init__(self):
         self.conn = None
-        self.cur = None 
+        self.cur = None
 
     def __enter__(self):
         self.open()
@@ -27,15 +25,16 @@ class DB():
         return True
 
     def add(self, date, etype, income, expense, memo):
-        #date = datetime.date.today()
         self.cur.execute("SELECT MAX(ID) FROM MONEY")
         row = self.cur.fetchone()
         next_id = (row[0] or 0) + 1 
-        self.cur.execute("INSERT INTO MONEY VALUES (?, ?, ?, ?, ?, ?)", (next_id, date, etype, income, expense, memo))
+        self.cur.execute("INSERT INTO MONEY VALUES (?, ?, ?, ?, ?, ?)", 
+                         (next_id, date, etype, income, expense, memo))
         return self.conn.commit()
     
-    def update(self, i, col, new):
-        self.cur.execute("UPDATE MONEY SET {col}=? WHERE ID=?",(new,i))
+    def update(self, id, date, etype, income, expense, memo):
+        self.cur.execute("""UPDATE MONEY SET DATE=?, CATEGORY=?, INCOME=?, EXPENSE=?, MEMO=? WHERE ID=?""", 
+                         (date, etype, income, expense, memo, id))
         return self.conn.commit()
 
     def delete(self, i):
