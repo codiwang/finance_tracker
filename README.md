@@ -6,7 +6,8 @@ Main tools: Tkinter, sqlite3
 Dashboard:
 - Overview of total finance indicators
 - Pie chart of expense analysis by category
-- Line chart of income and expense for past 6 months 
+- Line chart of income and expense for past 6 months
+
 ![Alt text](images/dashboard.png "dashboard")
 
 Records:
@@ -15,6 +16,7 @@ Records:
 - Edit a record by selecting a row from the list and clicking the edit button. Modify the details and click save when done.
 - Delete a record by selecting a row and clicking the delete button.
 - The information on records list and dashboard should update when changes to the database are made.
+
 ![Alt text](images/records.png "dashboard")
 
 ##  Setup
